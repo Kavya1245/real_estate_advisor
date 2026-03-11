@@ -183,7 +183,11 @@ def load_data():
 
 @st.cache_data
 def load_raw():
-    return pd.read_csv('data/india_housing_prices.csv')
+    import os
+    if os.path.exists('data/india_housing_prices.csv'):
+        return pd.read_csv('data/india_housing_prices.csv')
+    else:
+        return pd.read_csv('data/cleaned_data.csv')
 
 clf, reg, le_dict, scaler, feature_names, model_info = load_models()
 df     = load_data()
@@ -1909,10 +1913,3 @@ elif page == "👩‍💻 About Creator":
                     </div>
                 </div>
             </div>""", unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class='footer'>
-        Built with ❤️ by <b style='color:#2563eb;'>Kavya S</b> &nbsp;·&nbsp;
-        Real Estate Investment Advisor &nbsp;·&nbsp;
-        Powered by XGBoost + Streamlit + MLflow
-    </div>""", unsafe_allow_html=True)
