@@ -2,10 +2,10 @@ pandas
 numpy
 matplotlib
 seaborn
-plotly==5.22.0
+plotly
 scikit-learn
 xgboost
-streamlit==1.40.0
+streamlit==1.45.0
 joblib
 openpyxl
 pillow
