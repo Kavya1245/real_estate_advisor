@@ -238,7 +238,9 @@ with st.sidebar:
         "👩‍💻 About Creator"
     ], label_visibility="collapsed")
 
-  
+
+
+
 # ==============================================================
 #  PAGE 1 — HOME
 # ==============================================================
@@ -894,6 +896,68 @@ elif page == "🔍 Predict Investment":
             ax.grid(True, alpha=0.4)
             plt.tight_layout()
             st.pyplot(fig); plt.close()
+        # explanation box
+        st.markdown("<br>", unsafe_allow_html=True)
+        yearly_factor = round(1.08**5, 4)
+        st.markdown(f"""
+        <div style='background:#f0fdf4;border:1.5px solid #86efac;border-radius:14px;padding:22px 28px;margin-top:10px;'>
+            <div style='font-size:1.05rem;font-weight:800;color:#16a34a;margin-bottom:14px;'>
+                \U0001f4a1 How is the Estimated Price After 5 Years Calculated?
+            </div>
+            <div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;'>
+                <div style='background:#ffffff;border-radius:10px;padding:14px 18px;border:1px solid #d1fae5;'>
+                    <div style='font-size:0.82rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;'>\U0001f916 ML Model Used</div>
+                    <div style='font-size:0.95rem;color:#1a1a2e;font-weight:600;'>{model_info['best_regressor_name']}</div>
+                    <div style='font-size:0.82rem;color:#64748b;margin-top:4px;'>Trained on 2,50,000 real estate records across India</div>
+                </div>
+                <div style='background:#ffffff;border-radius:10px;padding:14px 18px;border:1px solid #d1fae5;'>
+                    <div style='font-size:0.82rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;'>\U0001f4d0 Target Formula</div>
+                    <div style='font-size:0.95rem;color:#1a1a2e;font-weight:600;font-family:monospace;'>Future Price = Price \u00d7 (1.08)\u2075</div>
+                    <div style='font-size:0.82rem;color:#64748b;margin-top:4px;'>Assumes 8% annual appreciation (India avg)</div>
+                </div>
+            </div>
+            <div style='background:#ffffff;border-radius:10px;padding:14px 18px;border:1px solid #d1fae5;margin-bottom:14px;'>
+                <div style='font-size:0.85rem;font-weight:700;color:#1a1a2e;margin-bottom:8px;'>\U0001f9ee Your Property Calculation</div>
+                <div style='display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:0.92rem;color:#374151;'>
+                    <span style='background:#eff6ff;border-radius:6px;padding:4px 10px;font-weight:600;color:#2563eb;'>\u20b9{price:,.2f}L (Current)</span>
+                    <span style='font-size:1.2rem;'>\u00d7</span>
+                    <span style='background:#fef9c3;border-radius:6px;padding:4px 10px;font-weight:600;color:#92400e;'>(1.08)\u2075 = {yearly_factor}</span>
+                    <span style='font-size:1.2rem;'>=</span>
+                    <span style='background:#f0fdf4;border-radius:6px;padding:4px 10px;font-weight:600;color:#16a34a;'>\u20b9{future_price:,.2f}L (After 5 Years)</span>
+                </div>
+            </div>
+            <div style='background:#ffffff;border-radius:10px;padding:14px 18px;border:1px solid #d1fae5;margin-bottom:14px;'>
+                <div style='font-size:0.85rem;font-weight:700;color:#1a1a2e;margin-bottom:10px;'>\U0001f504 Does It Change Based on Your Input?</div>
+                <div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.84rem;color:#374151;'>
+                    <div>
+                        <div style='color:#16a34a;font-weight:700;margin-bottom:6px;'>\u2705 YES \u2014 Directly affect the price:</div>
+                        \U0001f4b0 <b>Price in Lakhs</b> \u2014 main driver<br>
+                        \U0001f4d0 <b>Size in SqFt</b> \u2014 larger = higher value<br>
+                        \U0001f3d9\ufe0f <b>City &amp; Locality</b> \u2014 location premium<br>
+                        \U0001f3e0 <b>Property Type</b> \u2014 Villa > Apartment<br>
+                        \U0001f6cf\ufe0f <b>BHK</b> \u2014 more rooms = more value<br>
+                        \U0001f3e2 <b>Floor No &amp; Total Floors</b> \u2014 position matters<br>
+                        \U0001f4c5 <b>Year Built</b> \u2014 newer = higher price
+                    </div>
+                    <div>
+                        <div style='color:#d97706;font-weight:700;margin-bottom:6px;'>\u26a0\ufe0f INDIRECT \u2014 Affect investment score:</div>
+                        \U0001f697 <b>Parking Space</b> \u2014 amenity value<br>
+                        \U0001f512 <b>Security</b> \u2014 safety premium<br>
+                        \U0001f3eb <b>Nearby Schools</b> \u2014 neighbourhood score<br>
+                        \U0001f3e5 <b>Nearby Hospitals</b> \u2014 convenience<br>
+                        \U0001f68c <b>Public Transport</b> \u2014 accessibility<br>
+                        \U0001f6cb\ufe0f <b>Furnished Status</b> \u2014 ready value<br>
+                        \U0001f4cc <b>Availability</b> \u2014 demand factor
+                    </div>
+                </div>
+            </div>
+            <div style='padding:10px 14px;background:#fefce8;border-radius:8px;border-left:4px solid #eab308;font-size:0.83rem;color:#713f12;'>
+                <b>\U0001f4cc Note:</b> The year-by-year chart uses a fixed <b>8% annual appreciation</b> rate (India real estate average).
+                The ML model predicts based on all <b>25 input features</b> together \u2014 so changing any field above
+                will update both the investment verdict and the 5-year price estimate instantly.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
 
 # ==============================================================
@@ -1905,3 +1969,5 @@ elif page == "👩‍💻 About Creator":
                     </div>
                 </div>
             </div>""", unsafe_allow_html=True)
+
+ 
