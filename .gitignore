@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+mlruns/
+data/india_housing_prices.csv
+data/cleaned_data.csv
+.vscode/
+.DS_Store
+Thumbs.db
+.streamlit/
