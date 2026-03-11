@@ -238,15 +238,7 @@ with st.sidebar:
         "👩‍💻 About Creator"
     ], label_visibility="collapsed")
 
-    st.markdown("""
-    <hr style='border-color:#334155;margin:16px 0 10px 0;'>
-    <div style='font-size:0.74rem;color:#94a3b8;text-align:center;'>
-        Built with ❤️ by <b style='color:#93c5fd'>Kavya S</b><br>
-        XGBoost · Streamlit · MLflow
-    </div>
-    """, unsafe_allow_html=True)
-
-
+  
 # ==============================================================
 #  PAGE 1 — HOME
 # ==============================================================
