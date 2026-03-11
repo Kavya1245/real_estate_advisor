@@ -238,7 +238,13 @@ with st.sidebar:
         "👩‍💻 About Creator"
     ], label_visibility="collapsed")
 
-
+    st.markdown("""
+    <hr style='border-color:#334155;margin:16px 0 10px 0;'>
+    <div style='font-size:0.74rem;color:#94a3b8;text-align:center;'>
+        Built with ❤️ by <b style='color:#93c5fd'>Kavya S</b><br>
+        XGBoost · Streamlit · MLflow
+    </div>
+    """, unsafe_allow_html=True)
 
 
 # ==============================================================
@@ -898,7 +904,6 @@ elif page == "🔍 Predict Investment":
             st.pyplot(fig); plt.close()
         # explanation box
         st.markdown("<br>", unsafe_allow_html=True)
-        yearly_factor = round(1.08**5, 4)
         st.markdown(f"""
         <div style='background:#f0fdf4;border:1.5px solid #86efac;border-radius:14px;padding:22px 28px;margin-top:10px;'>
             <div style='font-size:1.05rem;font-weight:800;color:#16a34a;margin-bottom:14px;'>
@@ -911,19 +916,29 @@ elif page == "🔍 Predict Investment":
                     <div style='font-size:0.82rem;color:#64748b;margin-top:4px;'>Trained on 2,50,000 real estate records across India</div>
                 </div>
                 <div style='background:#ffffff;border-radius:10px;padding:14px 18px;border:1px solid #d1fae5;'>
-                    <div style='font-size:0.82rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;'>\U0001f4d0 Target Formula</div>
-                    <div style='font-size:0.95rem;color:#1a1a2e;font-weight:600;font-family:monospace;'>Future Price = Price \u00d7 (1.08)\u2075</div>
-                    <div style='font-size:0.82rem;color:#64748b;margin-top:4px;'>Assumes 8% annual appreciation (India avg)</div>
+                    <div style='font-size:0.82rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;'>\U0001f4d0 How It's Trained</div>
+                    <div style='font-size:0.95rem;color:#1a1a2e;font-weight:600;font-family:monospace;'>Target = Price × (1.08)⁵</div>
+                    <div style='font-size:0.82rem;color:#64748b;margin-top:4px;'>Training label used 8% compounding — but the model learns patterns from ALL 25 features, so predictions vary per property</div>
                 </div>
             </div>
             <div style='background:#ffffff;border-radius:10px;padding:14px 18px;border:1px solid #d1fae5;margin-bottom:14px;'>
-                <div style='font-size:0.85rem;font-weight:700;color:#1a1a2e;margin-bottom:8px;'>\U0001f9ee Your Property Calculation</div>
-                <div style='display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:0.92rem;color:#374151;'>
-                    <span style='background:#eff6ff;border-radius:6px;padding:4px 10px;font-weight:600;color:#2563eb;'>\u20b9{price:,.2f}L (Current)</span>
-                    <span style='font-size:1.2rem;'>\u00d7</span>
-                    <span style='background:#fef9c3;border-radius:6px;padding:4px 10px;font-weight:600;color:#92400e;'>(1.08)\u2075 = {yearly_factor}</span>
-                    <span style='font-size:1.2rem;'>=</span>
-                    <span style='background:#f0fdf4;border-radius:6px;padding:4px 10px;font-weight:600;color:#16a34a;'>\u20b9{future_price:,.2f}L (After 5 Years)</span>
+                <div style='font-size:0.85rem;font-weight:700;color:#1a1a2e;margin-bottom:8px;'>\U0001f9ee Your Property — ML Predicted Values</div>
+                <div style='display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center;'>
+                    <div style='background:#eff6ff;border-radius:8px;padding:10px;'>
+                        <div style='font-size:0.75rem;color:#64748b;margin-bottom:4px;'>Current Price</div>
+                        <div style='font-size:1.1rem;font-weight:800;color:#2563eb;'>\u20b9{price:,.2f}L</div>
+                    </div>
+                    <div style='background:#f0fdf4;border-radius:8px;padding:10px;'>
+                        <div style='font-size:0.75rem;color:#64748b;margin-bottom:4px;'>ML Predicted (5Y)</div>
+                        <div style='font-size:1.1rem;font-weight:800;color:#16a34a;'>\u20b9{future_price:,.2f}L</div>
+                    </div>
+                    <div style='background:#fef9c3;border-radius:8px;padding:10px;'>
+                        <div style='font-size:0.75rem;color:#64748b;margin-bottom:4px;'>Total Growth</div>
+                        <div style='font-size:1.1rem;font-weight:800;color:#d97706;'>+{growth_pct:.1f}%</div>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:0.82rem;color:#64748b;text-align:center;'>
+                    \u26a0\ufe0f This value updates every time you change any input above and click Predict
                 </div>
             </div>
             <div style='background:#ffffff;border-radius:10px;padding:14px 18px;border:1px solid #d1fae5;margin-bottom:14px;'>
@@ -1970,4 +1985,9 @@ elif page == "👩‍💻 About Creator":
                 </div>
             </div>""", unsafe_allow_html=True)
 
- 
+    st.markdown("""
+    <div class='footer'>
+        Built with ❤️ by <b style='color:#2563eb;'>Kavya S</b> &nbsp;·&nbsp;
+        Real Estate Investment Advisor &nbsp;·&nbsp;
+        Powered by XGBoost + Streamlit + MLflow
+    </div>""", unsafe_allow_html=True)
