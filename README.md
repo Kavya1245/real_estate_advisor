@@ -268,7 +268,7 @@ Then open: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 streamlit run app.py
 ```
 
-Then open: [http://localhost:8501](http://localhost:8501)
+Then open: [https://kavya1245-real-estate-advisor-app-waabgk.streamlit.app/](http://localhost:8501)
 
 ---
 
